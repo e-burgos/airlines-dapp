@@ -1,6 +1,7 @@
 import React from "react";
 
-export default (props) => {
+
+const Panel = (props) => {
    return <div className="card">
         <h5 className="card-header bg-info text-white">{props.title}</h5>
         <div className="card-body">            
@@ -8,3 +9,5 @@ export default (props) => {
         </div>
     </div>
 }
+
+export default Panel;
