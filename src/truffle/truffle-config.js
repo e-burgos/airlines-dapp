@@ -1,3 +1,7 @@
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const mnemonic = 'mountains supernatural bird ...';
+const urlInfuraProvider = 'https://rinkeby.infura.io/v3/YOUR-PROJECT-ID';
+
 module.exports = {
   networks: {
     development: {      
@@ -5,6 +9,10 @@ module.exports = {
       port: 7545,
       network_id: '*',
       gas: 5000000
+    },
+    rinkeby: {      
+      provider: () => new HDWalletProvider(mnemonic, urlInfuraProvider),
+      network_id: '4',
     }
   },
   compilers: {
@@ -20,5 +28,3 @@ module.exports = {
   }
 };
 
-// Ganache MNEMONIC
-// trouble cigar typical frozen garlic this fever pottery thunder ranch skill wheat

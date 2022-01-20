@@ -97,6 +97,7 @@ export const purchaseFlight = async(flightIndex, flight) => {
     if(airlineContract === null) await getAirlineContract();
     try {
         const order = await airlineContract?.methods?.buyFlight(flightIndex).send({from: selectedAccount, value: flight.price});
+        console.log(console.log(`Transaction event info: ${order?.events}`));
         return `Your orden is complete! transactionHash: ${order?.transactionHash}`;
     } catch (error) {
         return `Sorry, your purchase could not go through, please try again, thank you!`;
@@ -153,7 +154,7 @@ export const redeemLoyaltyPoints = async() => {
     if(airlineContract === null) await getAirlineContract();
     try {
         const redeem = await airlineContract?.methods?.redeemLoyaltyPoints().send({from: selectedAccount});
-        console.log(redeem)
+        console.log(`Transaction info: ${redeem}`)
         return `Your redeem is complete! transactionHash: ${redeem?.transactionHash}`;
     } catch (error) {
         return `Sorry, your redeem could not go through, please try again, thank you!`;

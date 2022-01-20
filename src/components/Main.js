@@ -33,6 +33,23 @@ const Main = () => {
 	const [refundEther, setRefundEther] = useState(0);
 	const [msg, setMsg] = useState('');
 
+	let provider = window.ethereum;
+	if(typeof provider !== undefined){
+		// Metamask is installed!
+		provider
+			.request({ method: 'eth_requestAccounts' })
+			.then((accounts) => {
+				setAccount(accounts[0]);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		window.ethereum.on('accountsChanged', function(accounts){
+			setAccount(accounts[0]);
+		})
+	};
+
+
 	const fetchAccount = () => {
 		getSelectedAccount()
 			.then((account) => {
