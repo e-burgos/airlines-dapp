@@ -136,8 +136,7 @@ export const getRefundableEther = async () => {
 export const getAirlineBalance = async () => {
     if(!initialize) web3 = await init();
     if(airlineContract === null) await getAirlineContract();
-
-    const balance = await airlineContract?.methods?.getAirlineBalance().call();
+    const balance = web3.eth.getBalance(`${airlineContract._address.toLowerCase()}`);
     return balance;
 };
 
